@@ -1,0 +1,65 @@
+---
+import AppHeader from '../components/AppHeader.astro';
+import Footer from '../components/Footer.astro';
+
+const { title = 'Inboxt', description = '' } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>{title}</title>
+		{description && <meta name="description" content={description} />}
+
+		<script is:inline>
+			(() => {
+				const STORAGE_KEY = 'theme';
+				const VALID = new Set(['light', 'dark', 'auto']);
+
+				const getStoredTheme = () => {
+					try {
+						const v = localStorage.getItem(STORAGE_KEY);
+						return VALID.has(v) ? v : 'auto';
+					} catch {
+						return 'auto';
+					}
+				};
+
+				const theme = getStoredTheme();
+				const root = document.documentElement;
+
+				root.dataset.theme = theme;
+
+				if (theme === 'auto' && window.matchMedia) {
+					const mql = window.matchMedia('(prefers-color-scheme: dark)');
+					const onChange = () => {
+						root.dataset.theme = 'auto';
+					};
+
+					if (typeof mql.addEventListener === 'function') {
+						mql.addEventListener('change', onChange);
+					} else if (typeof mql.addListener === 'function') {
+						// Older Safari
+						mql.addListener(onChange);
+					}
+				}
+			})();
+		</script>
+
+		<link rel="stylesheet" href="/src/styles/global.css" />
+	</head>
+
+	<body class="min-h-screen">
+		<AppHeader />
+
+		<main id="main">
+			<slot />
+		</main>
+
+		<Footer />
+	</body>
+</html>

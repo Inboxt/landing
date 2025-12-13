@@ -1,0 +1,167 @@
+---
+import AppName from '../components/AppName.astro';
+
+const navItems = [
+	{ label: 'Features', href: '/features' },
+	{ label: 'Docs', href: 'https://github.com' },
+	{ label: 'Changelog', href: '/changelog' },
+	{ label: 'Roadmap', href: '/roadmap' },
+];
+---
+
+<header class="sticky top-0 left-0 z-50 w-full bg-(--color-bg)">
+	<div class="relative mx-auto flex h-14 max-w-6xl items-center px-4 sm:px-6 lg:px-8">
+		<div class="col-start-1 col-end-2 row-start-1 row-end-2">
+			<a href="/" aria-label="Homepage" class="relative inline-flex items-center">
+				<AppName size="sm" variant="full" />
+				<span class="sr-only">Inboxt</span>
+			</a>
+		</div>
+
+		<div class="hidden lg:block">
+			<nav
+				class="pointer-events-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+				role="navigation"
+			>
+				<ul class="flex items-center justify-center gap-6">
+					{
+						navItems.map((item) => (
+							<li>
+								<a
+									href={item.href}
+									class="text-sm font-medium text-(--color-text) transition-colors hover:text-(--color-muted)"
+								>
+									{item.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+		</div>
+
+		<div
+			class="col-start-2 col-end-3 row-start-1 row-end-2 ml-auto flex items-center justify-end gap-2 lg:col-start-3 lg:-col-end-1"
+		>
+			<a
+				href="https://github.com/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="group hidden h-9 items-center justify-center gap-2 rounded-md border border-(--color-border) bg-(--color-bg) px-3.5 text-sm font-semibold text-(--color-text) transition-colors hover:bg-(--color-surface) sm:inline-flex"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					class="h-4 w-4 fill-transparent stroke-current transition-all duration-200 group-hover:fill-red-600 group-hover:stroke-red-600"
+				>
+					<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+					<path
+						d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"
+					></path>
+				</svg>
+
+				Sponsor
+			</a>
+
+			<a
+				href="/signin"
+				class="bg-primary-0 dark:bg-primary-6 dark:text-primary-0 text-primary-9 dark:hover:bg-primary-8 hover:bg-primary-1 focus-visible:ring-primary-2 inline-flex h-9 items-center justify-center rounded-md border border-transparent px-4 text-sm font-semibold shadow-none transition-colors duration-150 focus-visible:ring-2 focus-visible:outline-none"
+			>
+				Get Started
+			</a>
+
+			<button
+				type="button"
+				class="inline-flex h-9 w-9 cursor-pointer items-center justify-center text-(--color-text) hover:text-(--color-text) focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--color-text)/40 lg:hidden"
+				aria-label="Open navigation"
+				aria-expanded="false"
+				data-mobile-nav-toggle
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="h-6 w-6"
+				>
+					<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+					<path d="M4 6l16 0"></path>
+					<path d="M4 12l16 0"></path>
+					<path d="M4 18l16 0"></path>
+				</svg>
+			</button>
+
+			<nav
+				class="pointer-events-none fixed inset-0 z-60 bg-(--color-bg) px-4 opacity-0 transition-opacity duration-300 ease-out data-[open=true]:pointer-events-auto data-[open=true]:opacity-100 sm:px-6 lg:hidden"
+				role="navigation"
+				data-mobile-nav-panel
+			>
+				<header class="flex h-16 items-center justify-end lg:h-17">
+					<button
+						type="button"
+						class="inline-flex h-9 w-9 cursor-pointer items-center justify-center text-(--color-text) hover:text-(--color-text) focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--color-text)/40"
+						aria-label="Close navigation"
+						data-mobile-nav-close
+					>
+						<svg
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.4"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="h-6 w-6"
+						>
+							<path d="M6 18L18 6M6 6l12 12"></path>
+						</svg>
+					</button>
+				</header>
+
+				<ul class="mt-4 flex flex-col space-y-2 text-lg font-medium text-(--color-text)">
+					{
+						navItems.map((item) => (
+							<li>
+								<a
+									href={item.href}
+									class="block py-2 text-(--color-text) transition-colors hover:text-(--color-muted)"
+								>
+									{item.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const toggle = document.querySelector('[data-mobile-nav-toggle]');
+			const panel = document.querySelector('[data-mobile-nav-panel]');
+			const closeBtn = document.querySelector('[data-mobile-nav-close]');
+
+			if (!toggle || !panel) return;
+
+			const setOpen = (open) => {
+				panel.dataset.open = open ? 'true' : 'false';
+				toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+				document.body.style.overflow = open ? 'hidden' : '';
+			};
+
+			toggle.addEventListener('click', () => {
+				const isOpen = panel.dataset.open === 'true';
+				setOpen(!isOpen);
+			});
+
+			closeBtn?.addEventListener('click', () => setOpen(false));
+		});
+	</script>
+</header>

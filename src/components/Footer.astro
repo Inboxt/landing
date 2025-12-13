@@ -1,0 +1,271 @@
+---
+const columns = [
+	{
+		title: 'Product',
+		links: [
+			{ label: 'Features', href: '/features' },
+			{ label: 'Changelog', href: '/changelog' },
+			{ label: 'Roadmap', href: '/roadmap' },
+		],
+	},
+	{
+		title: 'Documentation',
+		links: [
+			{ label: 'Docs', href: '/docs' },
+			{ label: 'Self-Hosting', href: '/docs/self-hosting' },
+			{ label: 'Contributing', href: '/docs/contributing' },
+		],
+	},
+	{
+		title: 'Community',
+		links: [
+			{ label: 'GitHub Repo', href: 'https://github.com/...' },
+			{ label: 'Issues', href: 'https://github.com/.../issues' },
+			{ label: 'Discussions', href: 'https://github.com/.../discussions' },
+			{ label: 'Sponsor', href: 'https://github.com/sponsors/...' },
+			{ label: 'Contact', href: 'mailto:you@example.com' },
+		],
+	},
+	{
+		title: 'Legal',
+		links: [
+			{ label: 'Privacy Policy', href: '/privacy' },
+			{ label: 'Terms of Service', href: '/terms-of-service' },
+			{ label: 'License', href: '/license' },
+		],
+	},
+	{
+		title: 'Download',
+		links: [
+			{ label: 'Chrome Extension', href: '/extensions/chrome' },
+			{ label: 'Firefox Extension', href: '/extensions/firefox' },
+			{ label: 'Safari Extension', href: '/extensions/safari' },
+			{ label: 'Mobile (PWA)', href: '/mobile' },
+			{ label: 'Source Code', href: 'https://github.com/...' },
+		],
+	},
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-(--color-bg) text-(--color-text)">
+	<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+		<div class="py-12 lg:py-16">
+			<nav aria-label="Footer" class="flex flex-wrap justify-between gap-8">
+				{
+					columns.map((col) => (
+						<div class="w-1/2 sm:w-auto">
+							<>
+								<h3 class="text-sm font-semibold text-(--color-text)">
+									{col.title}
+								</h3>
+								<ul class="mt-4 space-y-2">
+									{col.links.map((link) => (
+										<li>
+											<a
+												href={link.href}
+												target={
+													link.href.startsWith('http')
+														? '_blank'
+														: undefined
+												}
+												rel={
+													link.href.startsWith('http')
+														? 'noopener noreferrer'
+														: undefined
+												}
+												class="text-sm text-(--color-text)/70 transition-colors hover:text-(--color-text)"
+											>
+												{link.label}
+											</a>
+										</li>
+									))}
+								</ul>
+							</>
+						</div>
+					))
+				}
+			</nav>
+
+			<div class="mt-12 flex flex-col gap-3 pt-6 sm:flex-row sm:items-end sm:justify-between">
+				<p class="text-xs text-(--color-text)/70">
+					© {year} Inboxt. Made with{' '}
+					<span aria-hidden="true" class="text-red-600">❤️</span> and some rubber duck debugging.
+				</p>
+
+				<div class="flex items-center gap-4">
+					<span id="theme-status" class="sr-only" aria-live="polite"></span>
+
+					<div
+						role="group"
+						aria-label="Theme"
+						class="inline-flex items-stretch overflow-hidden rounded-md border border-(--color-border) bg-(--color-bg)"
+					>
+						<button
+							type="button"
+							class="inline-flex h-9 w-9 cursor-pointer items-center justify-center bg-transparent text-(--color-text) transition-colors hover:bg-(--color-surface) focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--color-text)/40 aria-pressed:bg-(--color-surface)"
+							data-theme-value="auto"
+							aria-label="System theme"
+							aria-pressed="false"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="h-4 w-4"
+								aria-hidden="true"
+							>
+								<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+								<path
+									d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z"
+								></path>
+								<path d="M7 20h10"></path>
+								<path d="M9 16v4"></path>
+								<path d="M15 16v4"></path>
+							</svg>
+						</button>
+
+						<button
+							type="button"
+							class="inline-flex h-9 w-9 cursor-pointer items-center justify-center border-l border-(--color-border) bg-transparent text-(--color-text) transition-colors hover:bg-(--color-surface) focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--color-text)/40 aria-pressed:bg-(--color-surface)"
+							data-theme-value="light"
+							aria-label="Light theme"
+							aria-pressed="false"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="h-4 w-4"
+								aria-hidden="true"
+							>
+								<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+								<path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+								<path
+									d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"
+								></path>
+							</svg>
+						</button>
+
+						<button
+							type="button"
+							class="inline-flex h-9 w-9 cursor-pointer items-center justify-center border-l border-(--color-border) bg-transparent text-(--color-text) transition-colors hover:bg-(--color-surface) focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--color-text)/40 aria-pressed:bg-(--color-surface)"
+							data-theme-value="dark"
+							aria-label="Dark theme"
+							aria-pressed="false"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="h-4 w-4"
+								aria-hidden="true"
+							>
+								<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+								<path
+									d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"
+								></path>
+							</svg>
+						</button>
+					</div>
+
+					<script is:inline>
+						(() => {
+							const STORAGE_KEY = 'theme'; // "light" | "dark" | "auto"
+							const VALID = new Set(['light', 'dark', 'auto']);
+
+							const themeLabel = (t) =>
+								t === 'auto' ? 'System' : t === 'light' ? 'Light' : 'Dark';
+
+							const getTheme = () => {
+								try {
+									const v = localStorage.getItem(STORAGE_KEY);
+									return VALID.has(v)
+										? v
+										: document.documentElement.dataset.theme || 'auto';
+								} catch {
+									return document.documentElement.dataset.theme || 'auto';
+								}
+							};
+
+							const setTheme = (theme) => {
+								const root = document.documentElement;
+
+								if (theme === 'auto') {
+									const prefersDark = window.matchMedia(
+										'(prefers-color-scheme: dark)',
+									).matches;
+									root.dataset.theme = prefersDark ? 'dark' : 'light';
+									root.dataset.themeMode = 'auto'; // optional, if you want to track it
+								} else {
+									root.dataset.theme = theme;
+									delete root.dataset.themeMode;
+								}
+
+								try {
+									localStorage.setItem(STORAGE_KEY, theme);
+								} catch {}
+
+								const buttons = document.querySelectorAll(
+									'button[data-theme-value]',
+								);
+								buttons.forEach((btn) => {
+									btn.setAttribute(
+										'aria-pressed',
+										String(btn.getAttribute('data-theme-value') === theme),
+									);
+								});
+
+								const status = document.getElementById('theme-status');
+								if (status) status.textContent = `Theme: ${themeLabel(theme)}`;
+							};
+
+							setTheme(getTheme());
+
+							document.addEventListener('click', (e) => {
+								const btn =
+									e.target &&
+									e.target.closest &&
+									e.target.closest('button[data-theme-value]');
+								if (!btn) return;
+								const value = btn.getAttribute('data-theme-value');
+								if (!VALID.has(value)) return;
+								setTheme(value);
+							});
+
+							if (window.matchMedia) {
+								const mql = window.matchMedia('(prefers-color-scheme: dark)');
+								const onChange = () => {
+									if (getTheme() === 'auto') setTheme('auto');
+								};
+								if (typeof mql.addEventListener === 'function')
+									mql.addEventListener('change', onChange);
+								else if (typeof mql.addListener === 'function')
+									mql.addListener(onChange);
+							}
+						})();
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

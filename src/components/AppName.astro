@@ -1,0 +1,17 @@
+---
+import AppLogo from '../assets/logo.svg';
+import AppLogoWhite from '../assets/logo-white.svg';
+---
+
+<div class="flex items-center gap-1">
+	<img src={AppLogo.src} alt="Inboxt logo" width={30} height={30} class="block dark:hidden" />
+	<img
+		src={AppLogoWhite.src}
+		alt="Inboxt logo"
+		width={30}
+		height={30}
+		class="hidden dark:block"
+	/>
+
+	<h1 class="text-primary-6 ml-1 text-xl font-bold">Inboxt</h1>
+</div>
