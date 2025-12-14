@@ -117,3 +117,16 @@ html[data-theme="dark"] {
 	color: var(--color-muted);
 	font-size: 0.85em;
 }
+
+/* ---- Released roadmap ---- */
+#roadmap-wrapper[data-loading="true"] {
+	height: 20rem;
+}
+
+#roadmap-wrapper {
+	transition: min-height 0.2s ease;
+}
+
+#released-loader {
+	transition: opacity 0.2s ease;
+}

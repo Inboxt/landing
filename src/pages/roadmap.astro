@@ -19,9 +19,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			</p>
 		</div>
 
-		<div class="min-h-81.25">
+		<div id="roadmap-wrapper" data-loading="true" class="relative overflow-hidden">
+			<div
+				id="released-loader"
+				class="absolute inset-0 z-10 flex items-center justify-center bg-(--color-bg)"
+			>
+				<div
+					class="h-8 w-8 animate-spin rounded-full border-2 border-(--color-muted) border-t-transparent"
+				>
+				</div>
+			</div>
+
 			<released-page channel-id="4bc7a7d0-ecd2-4da7-b137-34a3f674ac83" modules="roadmap"
 			></released-page>
 		</div>
+
+		<script is:inline>
+			(() => {
+				const wrapper = document.getElementById('roadmap-wrapper');
+				const loader = document.getElementById('released-loader');
+
+				if (!wrapper || !loader) return;
+
+				const MIN_TIME = 700;
+				const start = performance.now();
+
+				window.addEventListener('load', () => {
+					const elapsed = performance.now() - start;
+					const remaining = Math.max(0, MIN_TIME - elapsed);
+
+					setTimeout(() => {
+						loader.style.opacity = '0';
+						loader.style.pointerEvents = 'none';
+
+						// remove temporary min-height
+						wrapper.removeAttribute('data-loading');
+
+						setTimeout(() => loader.remove(), 200);
+					}, remaining);
+				});
+			})();
+		</script>
 	</section>
 </BaseLayout>
