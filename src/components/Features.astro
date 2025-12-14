@@ -1,0 +1,121 @@
+---
+const features = [
+	{
+		id: 'save',
+		title: 'Save from anywhere',
+		description:
+			'Add articles by pasting a URL or using the browser extension. Everything lands in your inbox, ready to read.',
+		imageLight: '/images/feature-save-from-anywhere.png',
+		imageDark: '/images/feature-save-from-anywhere-dark.png',
+	},
+	{
+		id: 'newsletters',
+		title: 'Newsletters in your inbox',
+		description:
+			'Create inbound email addresses and read newsletters directly alongside your articles.',
+		imageLight: '/images/feature-newsletters.png',
+		imageDark: '/images/feature-newsletters-dark.png',
+	},
+
+	{
+		id: 'labels',
+		title: 'Organize with labels',
+		description: 'Use labels to structure articles and newsletters for easy retrieval.',
+		imageLight: '/images/feature-labels.png',
+		imageDark: '/images/feature-labels-dark.png',
+	},
+	{
+		id: 'reader',
+		title: 'Distraction-free reading',
+		description: 'Read in a clean reader view with themes, font controls, and focus.',
+		imageLight: '/images/feature-distraction-free-reading.png',
+		imageDark: '/images/feature-distraction-free-reading-dark.png',
+	},
+	{
+		id: 'highlights',
+		title: 'Highlights & exports',
+		description: 'Highlight important passages and export them as HTML, text, or Markdown.',
+		imageLight: '/images/feature-highlights.png',
+		imageDark: '/images/feature-highlights-dark.png',
+	},
+	{
+		id: 'ownership',
+		title: 'Own your data',
+		description: 'Import, export, self-host, and keep full control of your content.',
+		imageLight: '/images/feature-own-your-data.png',
+		imageDark: '/images/feature-own-your-data-dark.png',
+	},
+];
+---
+
+<div class="space-y-10">
+	<div
+		id="feature-preview"
+		class="mx-auto max-w-5xl overflow-hidden rounded-xl border border-(--color-border) bg-(--color-surface)"
+	>
+		<div class="flex items-center gap-2 border-b border-(--color-border) px-4 py-2">
+			<span class="bg-gray-4 h-2 w-2 rounded-full"></span>
+			<span class="bg-gray-4 h-2 w-2 rounded-full"></span>
+			<span class="bg-gray-4 h-2 w-2 rounded-full"></span>
+		</div>
+
+		{
+			features.map((feature, index) => (
+				<div data-preview={feature.id} class={index === 0 ? 'block' : 'hidden'}>
+					<img
+						src={feature.imageLight}
+						alt={feature.title}
+						class="block w-full dark:hidden"
+					/>
+					<img
+						src={feature.imageDark}
+						alt={feature.title}
+						class="hidden w-full dark:block"
+					/>
+				</div>
+			))
+		}
+	</div>
+
+	<ul class="grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3">
+		{
+			features.map((feature, index) => (
+				<li>
+					<button
+						data-feature={feature.id}
+						class={`h-full w-full rounded-lg border border-(--color-border) px-4 py-4 text-left transition-colors ${
+							index === 0 ? 'bg-(--color-surface)' : 'hover:bg-(--color-surface)'
+						}`}
+					>
+						<h3 class="font-medium text-(--color-text)">{feature.title}</h3>
+						<p class="mt-1 text-sm text-(--color-muted)">{feature.description}</p>
+					</button>
+				</li>
+			))
+		}
+	</ul>
+</div>
+
+<script>
+	const buttons = document.querySelectorAll('[data-feature]');
+	const previews = document.querySelectorAll('[data-preview]');
+
+	buttons.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const id = btn.getAttribute('data-feature');
+
+			buttons.forEach((b) => {
+				b.classList.remove('bg-(--color-surface)');
+				b.classList.add('bg-transparent');
+			});
+			btn.classList.add('bg-(--color-surface)');
+			btn.classList.remove('bg-transparent');
+
+			previews.forEach((preview) => {
+				preview.classList.add('hidden');
+			});
+
+			document.querySelector(`[data-preview="${id}"]`)?.classList.remove('hidden');
+		});
+	});
+</script>
