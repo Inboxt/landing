@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ChangelogHeader from '../../components/changelog/ChangelogHeader.astro';
+import ChangelogMeta from '../../components/changelog/ChangelogMeta.astro';
+import ChangelogContent from '../../components/changelog/ChangelogContent.astro';
+
+const entries = await getCollection('changelog');
+const sorted = [...entries].sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="Changelog | Inboxt">
+	<section>
+		<ChangelogHeader />
+
+		<div class="space-y-20">
+			{
+				sorted.length === 0 ? (
+					<div class="flex max-w-xl gap-4 text-(--color-muted)">
+						<div class="mt-1 shrink-0">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="h-5 w-5"
+							>
+								<>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+									<path d="M4 16l6 -7l5 5l5 -6" />
+									<path d="M15 14m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+									<path d="M10 9m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+									<path d="M4 16m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+									<path d="M20 8m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+								</>
+							</svg>
+						</div>
+
+						<div class="space-y-1">
+							<p class="text-lg font-medium text-(--color-text)">No releases yet</p>
+
+							<p class="text-sm">Updates will appear here as Inboxt evolves.</p>
+						</div>
+					</div>
+				) : (
+					<div class="space-y-20">
+						{sorted.map((entry) => (
+							<article class="relative">
+								<div class="grid grid-cols-1 gap-6 lg:grid-cols-[200px_1fr] lg:gap-10">
+									<ChangelogMeta entry={entry} href={`/changelog/${entry.id}`} />
+
+									<ChangelogContent>
+										<Fragment set:html={entry.rendered?.html ?? ''} />
+									</ChangelogContent>
+								</div>
+							</article>
+						))}
+					</div>
+				)
+			}
+		</div>
+	</section>
+</BaseLayout>

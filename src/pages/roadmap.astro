@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+// todo: disable page title change from released component/script
+---
+
+<BaseLayout>
+	<section>
+		<div class="space-y-1">
+			<h1 class="text-4xl leading-tight font-semibold tracking-tight text-balance">
+				Product Roadmap
+			</h1>
+
+			<p class="max-w-2xl text-lg text-(--color-muted)">
+				We build in the open. This roadmap shows what we’re exploring, actively building,
+				and planning next. Shipped features live in the <a
+					href="/changelog"
+					class="underline underline-offset-4 hover:text-(--color-text)">changelog</a
+				>.
+			</p>
+		</div>
+
+		<div class="min-h-81.25">
+			<released-page channel-id="4bc7a7d0-ecd2-4da7-b137-34a3f674ac83" modules="roadmap"
+			></released-page>
+		</div>
+	</section>
+</BaseLayout>
