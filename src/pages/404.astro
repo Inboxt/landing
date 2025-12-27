@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found | Inboxt" noIndex>
+	<section class="space-y-2">
+		<div class="space-y-1">
+			<h1 class="text-4xl leading-tight font-semibold tracking-tight text-balance">
+				Page not found
+			</h1>
+
+			<p class="max-w-2xl text-lg text-(--color-muted)">
+				The page you’re looking for doesn’t exist or may have been moved.
+			</p>
+		</div>
+
+		<div class="flex gap-4 text-sm">
+			<a href="/" class="underline underline-offset-4 hover:text-(--color-text)">
+				Return to home
+			</a>
+
+			<a
+				href="https://use.inboxt.app"
+				class="underline underline-offset-4 hover:text-(--color-text)"
+			>
+				Open app
+			</a>
+		</div>
+	</section>
+</BaseLayout>
