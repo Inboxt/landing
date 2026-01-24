@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import '../styles/global.css';
 
 const { title = 'Inboxt', description = '', noIndex = false } = Astro.props;
+const isProd = import.meta.env.PROD;
 ---
 
 <html lang="en">
@@ -57,10 +58,15 @@ const { title = 'Inboxt', description = '', noIndex = false } = Astro.props;
 		</script>
 
 		<script src="https://embed.released.so/1/embed.js" defer></script>
-		<script
-			defer
-			src="https://stats.inboxt.app/script.js"
-			data-website-id="ca97deb7-fe6f-4785-994c-bd0795ddb2c4"></script>
+		{
+			isProd && (
+				<script
+					defer
+					src="https://stats.inboxt.app/script.js"
+					data-website-id="ca97deb7-fe6f-4785-994c-bd0795ddb2c4"
+				/>
+			)
+		}
 	</head>
 
 	<body class="flex min-h-screen flex-col">
