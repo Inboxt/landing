@@ -3,7 +3,7 @@ import AppName from '../components/AppName.astro';
 
 const navItems = [
 	{ label: 'Docs', href: 'https://docs.inboxt.app' },
-	{ label: 'Changelog', href: '/changelog' },
+	{ label: 'Changelog', href: 'https://github.com/Inboxt/inboxt/releases' },
 	{ label: 'Roadmap', href: '/roadmap' },
 ];
 ---
@@ -42,6 +42,51 @@ const navItems = [
 		<div
 			class="col-start-2 col-end-3 row-start-1 row-end-2 ml-auto flex items-center justify-end gap-2 lg:col-start-3 lg:-col-end-1"
 		>
+			<button
+				type="button"
+				class="group flex h-9 w-9 cursor-pointer items-center justify-center rounded-md border border-(--color-border) bg-(--color-bg) text-(--color-text) transition-colors hover:bg-(--color-surface) focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--color-text)/40"
+				data-theme-cycle
+				aria-label="Toggle theme"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="hidden h-4 w-4 group-data-[theme-mode=light]:block"
+					data-theme-icon="light"
+				>
+					<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+					<path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+					<path
+						d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"
+					></path>
+				</svg>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="hidden h-4 w-4 group-data-[theme-mode=dark]:block"
+					data-theme-icon="dark"
+				>
+					<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+					<path
+						d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"
+					></path>
+				</svg>
+			</button>
+
 			<a
 				href="https://github.com/sponsors/Inboxt"
 				target="_blank"
@@ -65,10 +110,10 @@ const navItems = [
 			</a>
 
 			<a
-				href="https://use.inboxt.app"
+				href="https://docs.inboxt.app/self-hosting"
 				class="bg-primary-0 dark:bg-primary-6 dark:text-primary-0 text-primary-9 dark:hover:bg-primary-8 hover:bg-primary-1 focus-visible:ring-primary-2 inline-flex h-9 items-center justify-center rounded-md border border-transparent px-4 text-sm font-semibold shadow-none transition-colors duration-150 focus-visible:ring-2 focus-visible:outline-none"
 			>
-				Get Started
+				Install
 			</a>
 
 			<button
@@ -143,24 +188,70 @@ const navItems = [
 
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
+			// --- Mobile nav ---
 			const toggle = document.querySelector('[data-mobile-nav-toggle]');
 			const panel = document.querySelector('[data-mobile-nav-panel]');
 			const closeBtn = document.querySelector('[data-mobile-nav-close]');
 
-			if (!toggle || !panel) return;
+			if (toggle && panel) {
+				const setOpen = (open: boolean) => {
+					(panel as HTMLElement).dataset.open = open ? 'true' : 'false';
+					toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+					document.body.style.overflow = open ? 'hidden' : '';
+				};
 
-			const setOpen = (open) => {
-				panel.dataset.open = open ? 'true' : 'false';
-				toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-				document.body.style.overflow = open ? 'hidden' : '';
+				toggle.addEventListener('click', () => {
+					const isOpen = (panel as HTMLElement).dataset.open === 'true';
+					setOpen(!isOpen);
+				});
+
+				closeBtn?.addEventListener('click', () => setOpen(false));
+			}
+
+			// --- Theme toggle icon sync ---
+			const themeBtn = document.querySelector<HTMLElement>('[data-theme-cycle]');
+			const STORAGE_KEY = 'theme';
+
+			const getSystemTheme = () =>
+				window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+			const getActiveTheme = () => {
+				try {
+					const stored = localStorage.getItem(STORAGE_KEY);
+					return stored === 'light' || stored === 'dark' ? stored : getSystemTheme();
+				} catch {
+					return getSystemTheme();
+				}
 			};
 
-			toggle.addEventListener('click', () => {
-				const isOpen = panel.dataset.open === 'true';
-				setOpen(!isOpen);
+			const syncIcon = (activeTheme: string) => {
+				if (themeBtn) themeBtn.dataset.themeMode = activeTheme;
+			};
+
+			// Sync icon on load
+			syncIcon(getActiveTheme());
+
+			// Sync icon whenever the Footer (or anything else) changes the theme
+			window.addEventListener('theme-change', (e) => {
+				const { active } = (e as CustomEvent<{ active: string }>).detail;
+				syncIcon(active);
 			});
 
-			closeBtn?.addEventListener('click', () => setOpen(false));
+			// Header toggle button: cycles between auto/explicit
+			themeBtn?.addEventListener('click', () => {
+				try {
+					const current = localStorage.getItem(STORAGE_KEY) || 'auto';
+					const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+					const next = current === 'auto' ? (prefersDark ? 'light' : 'dark') : 'auto';
+
+					// Delegate to Footer's centralized setTheme via a button click,
+					// or dispatch directly if Footer handles the event
+					const footerBtn = document.querySelector<HTMLElement>(
+						`button[data-theme-value="${next === 'auto' ? 'auto' : next}"]`,
+					);
+					footerBtn?.click();
+				} catch {}
+			});
 		});
 	</script>
 </header>

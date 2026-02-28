@@ -3,16 +3,18 @@ const features = [
 	{
 		id: 'save',
 		title: 'Save from anywhere',
+		icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-share-3"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 4v4c-6.575 1.028 -9.02 6.788 -10 12c-.037 .206 5.384 -5.962 10 -6v4l8 -7l-8 -7" /></svg>`,
 		description:
-			'Add articles by pasting a URL or using the browser extension. Everything lands in your inbox, ready to read.',
+			'Capture with browser extensions or forward by email — everything lands in your inbox, ready to read.',
 		imageLight: '/images/feature-save-from-anywhere.png',
 		imageDark: '/images/feature-save-from-anywhere-dark.png',
 	},
 	{
 		id: 'newsletters',
 		title: 'Newsletters in your inbox',
+		icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" /><path d="M3 7l9 6l9 -6" /></svg>`,
 		description:
-			'Create inbound email addresses and read newsletters directly alongside your articles.',
+			'Easy setup via webhooks (Maileroo, Postmark, etc.). Read newsletters directly alongside your articles.',
 		imageLight: '/images/feature-newsletters.png',
 		imageDark: '/images/feature-newsletters-dark.png',
 	},
@@ -20,6 +22,7 @@ const features = [
 	{
 		id: 'labels',
 		title: 'Organize with labels',
+		icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-label-important"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16.52 7h-12.52l4 5l-4 5h12.52a1 1 0 0 0 .78 -.375l3.7 -4.625l-3.7 -4.625a1 1 0 0 0 -.78 -.375" /></svg>`,
 		description: 'Use labels to structure articles and newsletters for easy retrieval.',
 		imageLight: '/images/feature-labels.png',
 		imageDark: '/images/feature-labels-dark.png',
@@ -27,6 +30,7 @@ const features = [
 	{
 		id: 'reader',
 		title: 'Distraction-free reading',
+		icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-focus-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11.5 12a.5 .5 0 1 0 1 0a.5 .5 0 1 0 -1 0" fill="currentColor" /><path d="M5 12a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M12 3l0 2" /><path d="M3 12l2 0" /><path d="M12 19l0 2" /><path d="M19 12l2 0" /></svg>`,
 		description: 'Read in a clean reader view with themes, font controls, and focus.',
 		imageLight: '/images/feature-distraction-free-reading.png',
 		imageDark: '/images/feature-distraction-free-reading-dark.png',
@@ -34,14 +38,18 @@ const features = [
 	{
 		id: 'highlights',
 		title: 'Highlights & exports',
-		description: 'Highlight important passages and export them as HTML, text, or Markdown.',
+		icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-highlight"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M12.5 5.5l4 4" /><path d="M4.5 13.5l4 4" /><path d="M21 15v4h-8l4 -4l4 0" /></svg>`,
+		description:
+			'Highlight important passages and export them as Markdown, HTML, or plain text.',
 		imageLight: '/images/feature-highlights.png',
 		imageDark: '/images/feature-highlights-dark.png',
 	},
 	{
 		id: 'ownership',
-		title: 'Own your data',
-		description: 'Import, export, self-host, and keep full control of your content.',
+		title: 'Full Data Ownership',
+		icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-database"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 6a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 16 0v-6" /><path d="M4 12v6a8 3 0 0 0 16 0v-6" /></svg>`,
+		description:
+			'Import, export, self-host, and keep 100% control of your content and privacy.',
 		imageLight: '/images/feature-own-your-data.png',
 		imageDark: '/images/feature-own-your-data-dark.png',
 	},
@@ -87,8 +95,16 @@ const features = [
 							index === 0 ? 'bg-(--color-surface)' : 'hover:bg-(--color-surface)'
 						}`}
 					>
-						<h3 class="font-medium text-(--color-text)">{feature.title}</h3>
-						<p class="mt-1 text-sm text-(--color-muted)">{feature.description}</p>
+						<div class="flex items-center gap-2">
+							<Fragment
+								set:html={feature.icon.replace(
+									/class="[^"]*"/,
+									'class="h-4 w-4 text-(--color-muted)"',
+								)}
+							/>
+							<h3 class="font-medium text-(--color-text)">{feature.title}</h3>
+						</div>
+						<p class="mt-2 text-sm text-(--color-muted)">{feature.description}</p>
 					</button>
 				</li>
 			))
