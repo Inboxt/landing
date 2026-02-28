@@ -14,16 +14,16 @@ import Features from '../components/Features.astro';
 			</h1>
 
 			<p class="max-w-xl text-lg text-(--color-muted)">
-				Your inbox for the internet — save articles, newsletters, and web content and read
-				them anywhere
+				Your <strong>private</strong> inbox for the internet — save articles, newsletters, and
+				web content to <strong>your own infrastructure</strong>.
 			</p>
 		</div>
 
 		<a
-			href="https://use.inboxt.app"
+			href="https://docs.inboxt.app/self-hosting"
 			class="bg-primary-0 dark:bg-primary-6 dark:text-primary-0 text-primary-9 dark:hover:bg-primary-8 hover:bg-primary-1 focus-visible:ring-primary-2 inline-flex h-10 items-center justify-center rounded-md border border-transparent px-6 text-sm font-semibold shadow-none transition-colors duration-150 focus-visible:ring-2 focus-visible:outline-none"
 		>
-			Get Started
+			Self-host Inboxt
 		</a>
 	</section>
 
@@ -105,16 +105,16 @@ import Features from '../components/Features.astro';
 							stroke-width="2"
 							stroke-linecap="round"
 							stroke-linejoin="round"
-							class="h-4 w-4 text-(--color-muted)"
+							class="icon icon-tabler icons-tabler-outline icon-tabler-device-mobile h-4 w-4 text-(--color-muted)"
 							><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-								d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
-							></path></svg
+								d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14"
+							></path><path d="M11 4h2"></path><path d="M12 17v.01"></path></svg
 						>
-						<h3 class="font-medium text-(--color-text)">Open-source & self-hostable</h3>
+						<h3 class="font-medium text-(--color-text)">On every device</h3>
 					</div>
 					<p class="mt-2 text-sm text-(--color-muted)">
-						Fully open-source. Use the hosted version or run your own instance and keep
-						full control of your data.
+						Compatible with iOS, Android, and every OS that supports PWAs. Fast and
+						consistent experience across platforms.
 					</p>
 				</div>
 
@@ -155,17 +155,18 @@ import Features from '../components/Features.astro';
 			</h2>
 
 			<p class="mt-6 text-lg text-(--color-text)">
-				Free, open-source, and designed to stay that way.
+				AGPL-3.0 Licensed, Docker-ready, and designed to stay that way.
 			</p>
 
 			<ul class="mt-6 space-y-2 text-sm text-(--color-muted)">
+				<li>• Built with NestJS, PostgreSQL, and Valkey</li>
 				<li>• Open-source and community-driven</li>
-				<li>• Self-hostable with full data ownership</li>
+				<li>• 100% Self-hostable with full data ownership</li>
 				<li>• No ads. No tracking. No lock-in</li>
 			</ul>
 
 			<p class="mt-4 text-sm text-(--color-muted)">
-				Follow progress through a public roadmap and a detailed changelog.
+				Follow progress through a public roadmap and release notes on GitHub.
 			</p>
 
 			<div class="mt-4 flex flex-wrap gap-4 text-sm">
@@ -182,7 +183,7 @@ import Features from '../components/Features.astro';
 					Roadmap
 				</a>
 				<a
-					href="/changelog"
+					href="https://github.com/Inboxt/inboxt/releases"
 					class="text-(--color-text) underline underline-offset-4 hover:text-(--color-muted)"
 				>
 					Changelog
@@ -192,6 +193,45 @@ import Features from '../components/Features.astro';
 					class="text-(--color-text) underline underline-offset-4 hover:text-(--color-muted)"
 				>
 					Documentation
+				</a>
+			</div>
+		</section>
+
+		<section
+			class="bg-primary-0/5 rounded-xl border border-(--color-border) p-8 text-center dark:bg-(--color-surface)"
+		>
+			<h2 class="text-2xl font-semibold tracking-tight">Ready to take control?</h2>
+			<p class="mx-auto mt-4 max-w-lg text-(--color-muted)">
+				Join the community of self-hosters building a better way to read. Deploy Inboxt in
+				minutes with Docker Compose.
+			</p>
+			<div class="mt-8 flex flex-wrap justify-center gap-4">
+				<a
+					href="https://docs.inboxt.app/self-hosting"
+					class="bg-primary-0 dark:bg-primary-6 dark:text-primary-0 text-primary-9 dark:hover:bg-primary-8 hover:bg-primary-1 focus-visible:ring-primary-2 inline-flex h-11 items-center justify-center rounded-md border border-transparent px-8 text-sm font-semibold shadow-none transition-colors duration-150 focus-visible:ring-2 focus-visible:outline-none"
+				>
+					Deploy Now
+				</a>
+				<a
+					href="https://github.com/Inboxt/inboxt"
+					class="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-(--color-border) bg-(--color-bg) px-8 text-sm font-semibold text-(--color-text) transition-colors hover:bg-(--color-surface) focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--color-text)/40"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github h-4 w-4"
+						><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+							d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+						></path></svg
+					>
+					Star on GitHub
 				</a>
 			</div>
 		</section>
