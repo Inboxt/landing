@@ -1,9 +1,0 @@
-{
-  "name": "inboxt-landing",
-  "compatibility_date": "2025-12-13",
-  "workers_dev": false,
-  "preview_urls": true,
-  "assets": {
-    "directory": "./dist"
-  }
-}
